@@ -1,0 +1,208 @@
+<head>
+    <title>Habiba Hassan - Portfolio</title>
+
+    <style>
+        header {
+            background-color: rgb(244, 114, 155);
+            color: black;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        nav {
+             display: flex;
+             justify-content: center;
+             gap: 10px;
+        }
+
+        section {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #about {
+            padding-top: 30px;
+            padding-bottom: 45px;
+        }
+
+        #about p {
+            max-width: 600px;
+            margin: auto;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #projects {
+            padding-top: 20px;
+            padding-bottom: 45px;
+        }
+
+        .projects-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .project {
+            background-color: rgb(234, 134, 177);
+            width: 130px;
+            padding: 15px;
+            text-align: left;
+
+
+
+
+            border-radius: 5px;
+            box-shadow: 0 2px 5px black;
+        }
+
+        .project h3 {
+            font-size: 13px;
+            margin-top: 0;
+        }
+
+        .project p {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        #contact {
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+
+        form {
+            width: 245px;
+            margin: auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 8px;
+            padding: 7px;
+            border-radius: 4px;
+            font-family: Arial;
+            font-size: 10px;
+        }
+
+        textarea {
+            height: 60px;
+        }
+
+        button {
+            width: 100%;
+            padding: 7px;
+            background-color: rgb(244, 114, 155);
+            color: black;
+            border: none;
+            border-radius: 3px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Habiba Hassan</h1>
+
+        <p>Web Developer | Computer Engineer </p>
+        
+        <nav>
+            <button>About</button>
+            <button>Projects</button>
+            <button>Contact</button>
+        </nav>
+
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+
+        <p>
+            Hello! I'm Habiba Hassan, a passionate computer science student interested in web development and software engineering. I enjoy learning new technologies, creating simple and useful projects, and improving my programming skills. I love turning ideas into creative and interactive websites.
+        </p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="project">
+                <h3>Mobile Flutter</h3>
+                <p>
+                    A mobile application developed using Flutter
+                    to manage tasks, track progress.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Hospital Software</h3>
+                <p>
+                    A hospital management system designed to
+                    organize patient records, doctor information,
+                    and hospital rooms.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Restaurant Management System</h3>
+                <p>
+                    A restaurant management system designed to
+                    handle orders, manage inventory, and track sales.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+
+        <form>
+
+            <input type="text" placeholder="Your Name">
+
+            <input type="email" placeholder="Your Email">
+
+            <textarea placeholder="Your Message"></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+    </section>
+
+    <footer>
+        © 2026 Habiba Hassan. All Rights Reserved.
+    </footer>
+
+</body>
