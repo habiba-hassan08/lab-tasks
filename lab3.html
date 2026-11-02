@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: black;
+        }
+
+        .calculator {
+            width: 100%;
+            min-height: 100vh;
+            padding: 3vh 4vw;
+            display: flex;
+            flex-direction: column;
+            background: #f26ab0;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1vh 0 3vh;
+        }
+
+        #display {
+            width: 100%;
+            height: 18vh;
+            min-height: 90px;
+            border: none;
+            border-radius: 12px;
+            background: rgb(227, 226, 226);
+            color: black;
+            font-size: clamp(36px, 8vw, 72px);
+            text-align: right;
+            padding: 15px 24px;
+            margin-bottom: 3vh;
+        }
+
+        .buttons {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-rows: repeat(5, minmax(55px, 1fr));
+            gap: 2vh 2vw;
+        }
+
+        button {
+            width: 100%;
+            height: 100%;
+            min-height: 55px;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            color: black;
+            font-size: clamp(20px, 4vw, 36px);
+            cursor: pointer;
+        }
+
+        button:hover {
+            filter: brightness(1.25);
+        }
+
+        button.function {
+            background: rgb(205, 85, 133);
+            color: #111;
+        }
+
+        button.operator,
+        button.equals {
+            background: black;
+            color: white;
+        }
+
+        button.zero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <section class="calculator">
+        <h1>My Calculator</h1>
+        <input type="text" id="display" value="0" readonly>
+
+        <div class="buttons">
+            <button class="function" onclick="clearDisplay()">AC</button>
+            <button onclick="addValue('00')">00</button>
+            <button class="function" onclick="percent()">%</button>
+            <button class="operator" onclick="chooseOperator('/')">÷</button>
+
+            <button onclick="addValue('7')">7</button>
+            <button onclick="addValue('8')">8</button>
+            <button onclick="addValue('9')">9</button>
+            <button class="operator" onclick="chooseOperator('*')">×</button>
+
+            <button onclick="addValue('4')">4</button>
+            <button onclick="addValue('5')">5</button>
+            <button onclick="addValue('6')">6</button>
+            <button class="operator" onclick="chooseOperator('-')">−</button>
+
+            <button onclick="addValue('1')">1</button>
+            <button onclick="addValue('2')">2</button>
+            <button onclick="addValue('3')">3</button>
+            <button class="operator" onclick="chooseOperator('+')">+</button>
+
+            <button class="zero" onclick="addValue('0')">0</button>
+            <button onclick="addDecimal()">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+        </div>
+    </section>
+
+    <script>
+        let currentValue = "0";
+        let firstValue = null;
+        let operator = null;
+        let shouldReset = false;
+
+        function updateDisplay() {
+            document.getElementById("display").value = currentValue;
+        }
+
+        function addValue(value) {
+            if (shouldReset) {
+                currentValue = value;
+                shouldReset = false;
+            } else if (currentValue === "0" || currentValue === "Error") {
+                currentValue = value;
+            } else {
+                currentValue += value;
+            }
+            updateDisplay();
+        }
+
+        function addDecimal() {
+            if (shouldReset || currentValue === "Error") {
+                currentValue = "0";
+                shouldReset = false;
+            }
+            if (!currentValue.includes(".")) {
+                currentValue += ".";
+            }
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentValue = "0";
+            firstValue = null;
+            operator = null;
+            shouldReset = false;
+            updateDisplay();
+        }
+
+        function chooseOperator(selectedOperator) {
+            firstValue = parseFloat(currentValue);
+            operator = selectedOperator;
+            shouldReset = true;
+        }
+
+        function calculate() {
+            if (operator === null || firstValue === null) return;
+
+            const secondValue = parseFloat(currentValue);
+            let result;
+
+            if (operator === "+") result = firstValue + secondValue;
+            else if (operator === "-") result = firstValue - secondValue;
+            else if (operator === "*") result = firstValue * secondValue;
+            else if (operator === "/") {
+                if (secondValue === 0) {
+                    currentValue = "Error";
+                    firstValue = null;
+                    operator = null;
+                    shouldReset = true;
+                    updateDisplay();
+                    return;
+                }
+                result = firstValue / secondValue;
+            }
+
+            currentValue = String(Number(result.toFixed(8)));
+            firstValue = null;
+            operator = null;
+            shouldReset = true;
+            updateDisplay();
+        }
+
+        function percent() {
+            if (currentValue !== "Error") {
+                currentValue = String(parseFloat(currentValue) / 100);
+                updateDisplay();
+            }
+        }
+    </script>
+</body>
+</html>
